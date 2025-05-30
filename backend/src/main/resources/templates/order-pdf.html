@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&amp;display=swap');
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            font-size: 12pt;
+            line-height: 1.5;
+            color: #333333;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+        .invoice-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+        .invoice-header {
+            border-bottom: 2px solid #665A38;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .company-info {
+            text-align: right;
+        }
+        .invoice-title {
+            font-size: 28pt;
+            color: #665A38;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        .invoice-subtitle {
+            font-size: 11pt;
+            color: #666;
+        }
+        .company-name {
+            font-size: 16pt;
+            font-weight: 700;
+            color: #665A38;
+            margin-bottom: 5px;
+        }
+        .company-details {
+            font-size: 10pt;
+            color: #666;
+        }
+        .invoice-details {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .invoice-details-left, .invoice-details-right {
+            width: 48%;
+        }
+        .detail-title {
+            font-weight: 700;
+            color: #665A38;
+            margin-bottom: 10px;
+            font-size: 14pt;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        .detail-row {
+            margin-bottom: 8px;
+            display: flex;
+        }
+        .detail-label {
+            font-weight: 600;
+            width: 140px;
+            color: #555;
+        }
+        .detail-value {
+            flex: 1;
+        }
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+        .invoice-table th {
+            background-color: #665A38;
+            color: white;
+            font-weight: 600;
+            text-align: left;
+            padding: 12px 15px;
+            font-size: 11pt;
+        }
+        .invoice-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            font-size: 11pt;
+        }
+        .invoice-table tr:nth-child(even) {
+            background-color: #f9f7f2;
+        }
+        .invoice-table .total-row td {
+            border-top: 2px solid #665A38;
+            border-bottom: none;
+            padding-top: 15px;
+            font-weight: 700;
+            font-size: 12pt;
+        }
+        .invoice-footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 10pt;
+            color: #666;
+            text-align: center;
+        }
+        .payment-info {
+            margin-top: 30px;
+            background-color: #f9f7f2;
+            padding: 15px;
+            border-left: 4px solid #665A38;
+        }
+        .payment-info-title {
+            font-weight: 700;
+            color: #665A38;
+            margin-bottom: 10px;
+        }
+        .thank-you-message {
+            margin: 30px 0;
+            text-align: center;
+            font-size: 14pt;
+            color: #665A38;
+            font-weight: 600;
+        }
+        @media print {
+            body {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+            .invoice-container {
+                padding: 0;
+            }
+        }
+    </style>
+    <title>Order Invoice</title>
+</head>
+<body>
+<div class="invoice-container">
+    <div class="invoice-header">
+        <div>
+            <div class="invoice-title">INVOICE</div>
+            <div class="invoice-subtitle">Order Reference: <span th:text="${order.orderReference}">ORD-12345</span></div>
+        </div>
+        <div class="company-info">
+            <div class="company-name">Glaze Cake Shop</div>
+            <div class="company-details">
+                123 Bakery Street<br />
+                Sweet City, SC 12345<br />
+                Phone: 077 123 4567<br />
+                Email: theglaze@gmail.com
+            </div>
+        </div>
+    </div>
+    <div class="invoice-details">
+        <div class="invoice-details-left">
+            <div class="detail-title">Bill To</div>
+            <div class="detail-row">
+                <div class="detail-label">Customer:</div>
+                <div class="detail-value">
+                    <span th:text="${order.firstName}" style="display: inline;">Saman</span> <span th:text="${order.lastName}" style="display: inline;">Kumara</span>
+                </div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Address:</div>
+                <div class="detail-value">
+                    <span th:text="${order.address}" style="display: inline;">123 Main St</span>,
+                    <span th:text="${order.city}" style="display: inline;">Anytown</span>,
+                    <span th:text="${order.state}" style="display: inline;">ST</span>,
+                    <span th:text="${order.postalCode}" style="display: inline;">12345</span>
+                </div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Email:</div>
+                <div class="detail-value" th:text="${order.email}">samankumara@gmail.com</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Phone:</div>
+                <div class="detail-value" th:text="${order.phoneNumber}">077 987 6543</div>
+            </div>
+        </div>
+        <div class="invoice-details-right">
+            <div class="detail-title">Invoice Details</div>
+            <div class="detail-row">
+                <div class="detail-label">Invoice Date:</div>
+                <div class="detail-value" th:text="${#dates.format(order.orderDate, 'MMMM dd, yyyy')}">May 15, 2025</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Payment Method:</div>
+                <div class="detail-value" th:text="${order.paymentMethod}">Bank Transfer</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Order Status:</div>
+                <div class="detail-value" th:text="${order.orderStatus}">Completed</div>
+            </div>
+        </div>
+    </div>
+    <table class="invoice-table">
+        <thead>
+        <tr>
+            <th style="width: 60%;">Product Description</th>
+            <th style="width: 20%;">Quantity</th>
+            <th style="width: 20%; text-align: right;">Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${order.productDescription}">Birthday Cake - Chocolate</td>
+            <td>1</td>
+            <td style="text-align: right;" th:text="${order.totalPrice}">Rs. 4500.00</td>
+        </tr>
+        <tr class="total-row">
+            <td colspan="2" style="text-align: right;">Total:</td>
+            <td style="text-align: right;" th:text="${order.totalPrice}">Rs. 4500.00</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="payment-info">
+        <div class="payment-info-title">Payment Information</div>
+        <p>Payment was processed on <span th:text="${#dates.format(order.orderDate, 'MMMM dd, yyyy')}">May 15, 2025</span> via <span th:text="${order.paymentMethod}">Bank Transfer</span>.</p>
+    </div>
+    <div class="thank-you-message">
+        Thank you for your business!
+    </div>
+    <div class="invoice-footer">
+        <p>This is an official receipt of your purchase. Please keep this for your records.</p>
+        <p>© 2025 Glaze Cake Shop. All rights reserved.</p>
+    </div>
+</div>
+</body>
+</html>

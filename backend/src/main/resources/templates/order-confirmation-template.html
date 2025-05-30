@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - Glaze Cake Shop</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .email-wrapper {
+            max-width: 650px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background-color: #665A38;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            color: white;
+            margin: 0;
+            font-weight: 600;
+            font-size: 24px;
+            letter-spacing: 0.5px;
+        }
+        
+        .header p {
+            color: rgba(255,255,255,0.9);
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .greeting {
+            margin-bottom: 25px;
+        }
+        
+        .greeting h2 {
+            color: #665A38;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .greeting p {
+            color: #555;
+            font-size: 15px;
+        }
+        
+        .order-summary {
+            background-color: #f9f7f2;
+            border-left: 4px solid #665A38;
+            padding: 15px 20px;
+            margin-bottom: 30px;
+        }
+        
+        .order-summary p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .order-summary p strong {
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .order-details {
+            border: 1px solid #eaeaea;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .order-details-header {
+            background-color: #f9f7f2;
+            padding: 12px 20px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .order-details-header h3 {
+            color: #665A38;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .order-details-content {
+            padding: 20px;
+        }
+        
+        .order-details-content p {
+            margin: 8px 0;
+            font-size: 14px;
+            color: #555;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .order-details-content p strong {
+            color: #333;
+            font-weight: 600;
+            min-width: 150px;
+        }
+        
+        .total-row {
+            border-top: 1px solid #eaeaea;
+            margin-top: 15px;
+            padding-top: 15px;
+            font-weight: 600;
+        }
+        
+        .shipping-info {
+            margin-bottom: 30px;
+        }
+        
+        .shipping-info h3 {
+            color: #665A38;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .shipping-box {
+            background-color: #f9f7f2;
+            padding: 15px 20px;
+            border-radius: 6px;
+        }
+        
+        .shipping-box p {
+            margin: 8px 0;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .shipping-box p strong {
+            color: #333;
+            font-weight: 600;
+            display: inline-block;
+            min-width: 120px;
+        }
+        
+        .cta-button {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .cta-button a {
+            display: inline-block;
+            background-color: #665A38;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 15px;
+        }
+        
+        .support-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .support-info p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .support-info a {
+            color: #665A38;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .footer {
+            background-color: #f9f7f2;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        .footer p {
+            color: #888;
+            font-size: 13px;
+            margin: 5px 0;
+        }
+        
+        .social-links {
+            margin: 15px 0;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            margin: 0 8px;
+            color: #665A38;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 13px;
+        }
+        
+        @media only screen and (max-width: 600px) {
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .order-details-content p {
+                flex-direction: column;
+            }
+            
+            .order-details-content p strong {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-wrapper">
+        <div class="header">
+            <h1>Order Confirmation</h1>
+            <p>Thank you for your purchase!</p>
+        </div>
+        
+        <div class="content">
+            <div class="greeting">
+                <h2>Hello <span th:text="${firstName}">John</span>,</h2>
+                <p>Thank you for your order. We're pleased to confirm that we've received your order and it's being processed.</p>
+            </div>
+            
+            <div class="order-summary">
+                <p><strong>Order Reference:</strong> <span th:text="${orderReference}">ORD-12345</span></p>
+                <p><strong>Order Date:</strong> <span th:text="${#dates.format(orderDate, 'dd MMM yyyy HH:mm')}">01 May 2025 14:30</span></p>
+                <p><strong>Payment Status:</strong> <span th:text="${paymentStatus}">Completed</span></p>
+            </div>
+            
+            <div class="order-details">
+                <div class="order-details-header">
+                    <h3>Order Details</h3>
+                </div>
+                <div class="order-details-content">
+                    <p>
+                        <strong>Product Description:</strong>
+                        <span th:text="${productDescription}">Birthday Cake - Chocolate</span>
+                    </p>
+                    <p th:if="${orderId}">
+                        <strong>Order ID:</strong>
+                        <span th:text="${orderId}">123456</span>
+                    </p>
+                    <p>
+                        <strong>Payment Method:</strong>
+                        <span th:text="${paymentMethod}">Credit Card</span>
+                    </p>
+                    <p class="total-row">
+                        <strong>Total Price:</strong>
+                        <span th:text="${totalPrice}">Rs. 4500.00</span>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="shipping-info">
+                <h3>Shipping Information</h3>
+                <div class="shipping-box">
+                    <p>
+                        <strong>Address:</strong>
+                        <span th:text="${address}">123 Main St</span>
+                    </p>
+                    <p>
+                        <strong>City:</strong>
+                        <span th:text="${city}">Kandy</span>
+                    </p>
+                    <p>
+                        <strong>State/Province:</strong>
+                        <span th:text="${state}">Central</span>
+                    </p>
+                    <p>
+                        <strong>Postal Code:</strong>
+                        <span th:text="${postalCode}">10001</span>
+                    </p>
+                    <p>
+                        <strong>Phone Number:</strong>
+                        <span th:text="${phoneNumber}">077 123 4567</span>
+                    </p>
+                </div>
+            </div>
+            
+            <!-- <div class="cta-button">
+                <a href="#">Track Your Order</a>
+            </div> -->
+            
+            <div class="support-info">
+                <p>If you have any questions about your order, please contact our customer service team.</p>
+                <p>Email: <a href="mailto:support@glazecakeshop.com">theglaze@gmail.com</a></p>
+                <p>Phone: 077 123 4567</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Thank you for shopping with Glaze Cake Shop!</p>
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+            </div>
+            <p>© 2025 Glaze Cake Shop. All rights reserved.</p>
+            <p>123 Bakery Street, Sweet City</p>
+        </div>
+    </div>
+</body>
+</html>

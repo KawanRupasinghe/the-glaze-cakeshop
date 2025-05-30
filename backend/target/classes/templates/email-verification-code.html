@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Reset Verification</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; background-color: #ffffff; color: #333333; width: 100%;">
+    <!-- Main Container -->
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+            <td align="center" style="padding: 20px 0;">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="max-width: 600px; width: 100%; border: 1px solid #e0e0e0; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                    <!-- Header -->
+                    <tr>
+                        <td align="center" style="padding: 25px 30px 15px; border-bottom: 1px solid #e0e0e0;">
+                            <h1 style="margin: 0; color: #665A38; font-size: 24px; font-weight: bold;">Glaze Cake Shop</h1>
+                        </td>
+                    </tr>
+                    
+                    <!-- Content -->
+                    <tr>
+                        <td style="padding: 30px 30px 20px;">
+                            <h2 style="color: #333333; margin-top: 0; margin-bottom: 15px; font-size: 20px; font-weight: bold;">Password Reset Request</h2>
+                            
+                            <p style="color: #333333; line-height: 1.5; margin-bottom: 20px; font-size: 16px;">Hello <span th:text="${name}" style="font-weight: bold;"></span>,</p>
+                            
+                            <p style="color: #333333; line-height: 1.5; margin-bottom: 20px; font-size: 16px;">We received a request to reset your password. Please use the verification code below to complete the process:</p>
+                            
+                            <!-- Verification Code Box -->
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin: 25px 0;">
+                                <tr>
+                                    <td align="center">
+                                        <div style="background-color: #f7f5f0; border: 2px solid #665A38; border-radius: 4px; padding: 15px 20px; display: inline-block;">
+                                            <p style="font-size: 28px; font-weight: bold; color: #665A38; letter-spacing: 3px; margin: 0; font-family: 'Courier New', monospace;" th:text="${verificationCode}">123456</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <p style="color: #333333; line-height: 1.5; margin-bottom: 20px; font-size: 16px;">This code will expire in <strong>30 minutes</strong>. If you did not request a password reset, please ignore this email or contact our support team immediately.</p>
+                            
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin: 30px 0 15px; background-color: #f9f9f9; border-left: 4px solid #665A38; padding: 12px 15px;">
+                                <tr>
+                                    <td>
+                                        <p style="color: #333333; margin: 0; font-size: 14px;"><strong>Security Notice:</strong> Never share this code with anyone. Our staff will never ask for your verification code.</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer -->
+                    <tr>
+                        <td style="padding: 20px 30px 30px; border-top: 1px solid #e0e0e0; background-color: #f9f9f9;">
+                            <p style="color: #666666; font-size: 14px; margin: 0 0 10px;">If you need assistance, please contact our support team.</p>
+                            <p style="color: #666666; font-size: 14px; margin: 0;">Best regards,<br>The Glaze Cake Shop Team</p>
+                        </td>
+                    </tr>
+                </table>
+                
+                <!-- Company Info -->
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="max-width: 600px; width: 100%; margin-top: 20px;">
+                    <tr>
+                        <td align="center" style="padding: 0 20px;">
+                            <p style="color: #999999; font-size: 13px; margin: 0;">© 2024 Glaze Cake Shop. All rights reserved.</p>
+                            <p style="color: #999999; font-size: 13px; margin: 8px 0 0;">This is an automated message, please do not reply.</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
