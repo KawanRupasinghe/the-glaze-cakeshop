@@ -32,6 +32,26 @@ A full-stack bakery web application for **The Glaze Cake Shop**, built with **Ja
 
 ---
 
+the-glaze-cakeshop/
+│
+├── frontend/              # React frontend (Vite-based)
+│   ├── public/            # Static assets (favicon, images, etc.)
+│   ├── src/               # React source code
+│   ├── index.html         # Main HTML file
+│   ├── package.json       # Frontend dependencies and scripts
+│   └── vite.config.js     # Vite config
+│
+├── backend/               # Java Spring Boot backend
+│   ├── src/               # Java source code
+│   ├── sql/               # SQL scripts (schemas/data)
+│   ├── pom.xml            # Maven project descriptor
+│   ├── Dockerfile         # Optional backend containerization
+│   └── README.md          # Backend-specific instructions
+│
+└── README.md              # Main project documentation
+
+---
+
 ## 📦 Installation & Setup
 
 ### Prerequisites
