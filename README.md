@@ -68,3 +68,26 @@ the-glaze-cakeshop/
 cd frontend
 npm install
 npm run dev
+
+---
+
+### Go into backend folder
+cd backend
+
+# (1) Create MySQL database if not already created
+CREATE DATABASE glaze_cakeshop;
+
+# (2) Update src/main/resources/application.properties (or application.yml)
+# Example:
+spring.datasource.url=jdbc:mysql://localhost:3306/glaze_cakeshop
+spring.datasource.username=root
+spring.datasource.password=yourpassword
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+# (3) Build the project
+mvn clean install
+
+# (4) Run the backend server
+mvn spring-boot:run
+
