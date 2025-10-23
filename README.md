@@ -32,6 +32,7 @@ A full-stack bakery web application for **The Glaze Cake Shop**, built with **Ja
 
 ---
 
+```text
 the-glaze-cakeshop/
 │
 ├── frontend/              # React frontend (Vite-based)
@@ -49,6 +50,7 @@ the-glaze-cakeshop/
 │   └── README.md          # Backend-specific instructions
 │
 └── README.md              # Main project documentation
+```
 
 ---
 
@@ -62,32 +64,40 @@ the-glaze-cakeshop/
 
 ---
 
-### Frontend
+### Frontend Setup
 
 ```bash
 cd frontend
 npm install
 npm run dev
-
+```
 ---
 
-### Go into backend folder
+### Backend Setup
+```bash
 cd backend
+```
 
-# (1) Create MySQL database if not already created
+#### (1) Create MySQL database if not already created
+```sql
 CREATE DATABASE glaze_cakeshop;
+```
 
-# (2) Update src/main/resources/application.properties (or application.yml)
-# Example:
+#### (2) Update src/main/resources/application.properties (or application.yml)
+##### Example:
 spring.datasource.url=jdbc:mysql://localhost:3306/glaze_cakeshop
 spring.datasource.username=root
 spring.datasource.password=yourpassword
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 
-# (3) Build the project
+#### (3) Build the project
+```bash
 mvn clean install
+```
 
-# (4) Run the backend server
+#### (4) Run the backend server
+```bash
 mvn spring-boot:run
+```
 
